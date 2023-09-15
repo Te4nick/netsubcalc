@@ -1,0 +1,18 @@
+[project]
+name = "netsubcalc"
+version = "0.0.1"
+authors = [
+  { name="Te4nick", email="te4nick@outlook.com" },
+]
+description = "Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Te4nick/netsubcalc/"
+"Bug Tracker" = "https://github.com/Te4nick/netsubcalc/issues"

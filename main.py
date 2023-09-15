@@ -1,25 +1,12 @@
 from typing import Callable
-import netsubcalc as cvs
-
-
-def addresses_good(args) -> bool:
-    ok: bool = True
-    for i, addr in enumerate(args):
-        try:
-            if not cvs.is_ip(addr):
-                ok = False
-                print(f"ALERT: Invalid parameter at position {i}")
-        except ValueError:
-            ok = False
-            print(f"ALERT: Invalid parameter at position {i}")
-    return ok
+import netsubcalc as nsc
 
 
 def __print_res(func: Callable, *args):
     ok: bool = True
     for i, addr in enumerate(args):
         try:
-            if not cvs.is_ip(addr):
+            if not nsc.is_ip(addr):
                 ok = False
                 print(f"ALERT: Invalid parameter at position {i}")
         except ValueError:
@@ -55,17 +42,17 @@ if __name__ == '__main__':
                 print_help()
 
             case "ip2bin":
-                __print_res(cvs.ip2bin, ins[1])
+                __print_res(nsc.ip2bin, ins[1])
 
             case "bin2ip":
-                __print_res(cvs.bin2ip, ins[1])
+                __print_res(nsc.bin2ip, ins[1])
 
             case "netaddr":
-                __print_res(cvs.netaddr, ins[1], ins[2])
+                __print_res(nsc.netaddr, ins[1], ins[2])
 
             case "subnet":
-                __print_res(cvs.subnet_info, ins[1], ins[2])
-                __print_res(cvs.all_possible_subnets, ins[1], ins[2])
+                __print_res(nsc.print_subnet_info, ins[1], ins[2])
+                __print_res(nsc.print_all_possible_subnets, ins[1], ins[2])
 
             case _:
                 print('Unresolved command')

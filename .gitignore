@@ -1,4 +1,12 @@
+# IDE
 .idea
+
+# TESTS
 .coverage
+.pytest_cache
+htmlcov
+tests/.pytest_cache
+
+# Python env
 __pycache__
 venv
