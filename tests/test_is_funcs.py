@@ -1,7 +1,22 @@
-from netsubcalc import is_ip, is_bin_ip, is_mask, is_bin_mask, is_ip_private
+"""
+Testing is-functions of netsubcalc
+"""
+
+
+from netsubcalc import (
+    is_ip,
+    is_bin_ip,
+    is_mask,
+    is_bin_mask,
+    is_ip_private
+)
 
 
 def test_is_ip() -> None:
+    """
+        Test netsublib.is_ip function
+        :return:
+        """
     test_table = [
         {
             "data": "192.168.16.1",
@@ -33,6 +48,10 @@ def test_is_ip() -> None:
 
 
 def test_is_bin_ip() -> None:
+    """
+        Test netsublib.is_bin_ip function
+        :return:
+        """
     test_table = [
         {'data': '00000000.00000000.00000000.00000000', 'expected': True},
         {'data': '10000000.00000000.00000000.00000000', 'expected': True},
@@ -108,6 +127,10 @@ def test_is_bin_ip() -> None:
 
 
 def test_is_mask() -> None:
+    """
+        Test netsublib.is_mask function
+        :return:
+        """
     test_table = [
         {
             "data": "255.0.0.0",
@@ -151,6 +174,10 @@ def test_is_mask() -> None:
 
 
 def test_is_bin_mask() -> None:
+    """
+        Test netsublib.is_bin_mask function
+        :return:
+        """
     test_table = [
         {'data': '00000000.00000000.00000000.00000000', 'expected': False},
         {'data': '10000000.00000000.00000000.00000000', 'expected': True},
@@ -224,6 +251,10 @@ def test_is_bin_mask() -> None:
 
 
 def test_is_ip_private() -> None:
+    """
+        Test netsublib.is_ip_private function
+        :return:
+        """
     test_table = [
         {'data': '10.0.0.1', 'expected': True},
         {'data': '10.0.0.1', 'expected': True},
