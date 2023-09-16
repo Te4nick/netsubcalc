@@ -1,5 +1,5 @@
 # Network/Subnetwork Calculation [netsubcalc]
-![pylint]()
+![pylint](https://img.shields.io/badge/pylint-10.00-brightgreen?logo=python&logoColor=white)
 
 Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation.
 
