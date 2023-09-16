@@ -1,22 +1,31 @@
-from typing import Callable
+"""
+Simple bulletproof CLI-like script
+"""
+
+
+from typing import Callable  # callable to use in type hint
 import netsubcalc as nsc
 
 
 def __print_res(func: Callable, *args):
-    ok: bool = True
+    input_good: bool = True
     for i, addr in enumerate(args):
         try:
             if not nsc.is_ip(addr):
-                ok = False
+                input_good = False
                 print(f"ALERT: Invalid parameter at position {i}")
         except ValueError:
-            ok = False
+            input_good = False
             print(f"ALERT: Invalid parameter at position {i}")
-    if ok:
+    if input_good:
         print(func(*args))
 
 
 def print_help():
+    """
+    Prints help info to CLI
+    :return:
+    """
     hlp = '''
     help - display supported commands
     ip2bin <ip> - convert dec ip to bin ip

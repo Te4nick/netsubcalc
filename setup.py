@@ -1,6 +1,11 @@
-from setuptools import setup, find_packages
+"""
+Standard setup.py
+"""
+
+
 import codecs
 import os
+from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -9,7 +14,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 VERSION = '0.0.1'
 DESCRIPTION = 'Network/Subnetwork Calculation Module.'
-LONG_DESCRIPTION = 'Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation.'
+LONG_DESCRIPTION = 'Small and Slow Python Module for Networks and Subnetworks Values Calculation.'
 
 # Setting up
 setup(

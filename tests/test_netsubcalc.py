@@ -1,11 +1,18 @@
+"""
+Main testing file
+TODO: rebase to multiple
+"""
+
+
 import netsubcalc as nsc
 
 
-
-
-
-
 def test_ip2bin():
+    """
+    Test netsublib.ip2bin function
+    :return:
+    """
+
     test_table = [
         {'data': '255.255.255.255', 'expected': '11111111.11111111.11111111.11111111'},
         {'data': '127.255.255.255', 'expected': '01111111.11111111.11111111.11111111'},
@@ -50,6 +57,11 @@ test_ip2bin()
 
 
 def test_bin2ip():
+    """
+        Test netsublib.bin2ip function
+        :return:
+        """
+
     test_table = [
         {'data': '00000000.00000000.00000000.00000000', 'expected': '0.0.0.0'},
         {'data': '10000000.00000000.00000000.00000000', 'expected': '128.0.0.0'},

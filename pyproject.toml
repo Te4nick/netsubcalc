@@ -16,3 +16,7 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/Te4nick/netsubcalc/"
 "Bug Tracker" = "https://github.com/Te4nick/netsubcalc/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
