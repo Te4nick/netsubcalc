@@ -1,4 +1,6 @@
 # Network/Subnetwork Calculation [netsubcalc]
+![pylint]()
+
 Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation.
 
 Here, we deny standard **ipaddress** Python library preferring only input and return types of **bool**, **int**, **str**, **list[int]** or **None**.
