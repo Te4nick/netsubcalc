@@ -3,21 +3,31 @@ netsubcalc Convert IP/Mask from x to y format module
 """
 
 
-from is_funcs import *
+from netsubcalc.is_funcs import is_ip, is_mask, is_bin_ip
 
 
-def ip2bin(ip: str) -> str | None:
+__all__ = [
+    "ip2bin",
+    "bin2ip",
+    "ip2int_list",
+    "int_list2ip",
+    "mask2prefix",
+    "prefix2mask"
+]
+
+
+def ip2bin(dec_ip: str) -> str | None:
     """
     Converts decimal IP to binary format
     e.g. "192.168.0.1" -> "11000000.10101000.00000000.00000001"
-    :param ip: string decimal IP
+    :param dec_ip: string decimal IP
     :return: string binary IP |
     None if passed string is not decimal IP format
     """
-    if not is_ip(ip):
+    if not is_ip(dec_ip):
         return None
 
-    return '.'.join([format(int(x), "08b") for x in ip.split(".")])
+    return '.'.join([format(int(x), "08b") for x in dec_ip.split(".")])
 
 
 def bin2ip(bin_ip: str) -> str | None:
@@ -38,18 +48,18 @@ def bin2ip(bin_ip: str) -> str | None:
     return '.'.join(div_ip)
 
 
-def ip2int_list(ip: str) -> list[int] | None:
+def ip2int_list(dec_ip: str) -> list[int] | None:
     """
     Splits decimal IP to list[int]
     e.g. "192.168.0.1" -> [192, 168, 0, 1]
-    :param ip: string decimal IP
+    :param dec_ip: string decimal IP
     :return: list[int] split IP |
     None if passed string is not decimal IP format
     """
-    if not is_ip(ip):
+    if not is_ip(dec_ip):
         return None
 
-    return list(map(int, ip.split(".")))
+    return list(map(int, dec_ip.split(".")))
 
 
 def int_list2ip(div_ip: list[int]) -> str | None:
@@ -63,25 +73,25 @@ def int_list2ip(div_ip: list[int]) -> str | None:
     if len(div_ip) != 4:
         return None
 
-    ip: str = ".".join(map(str, div_ip))
-    if not is_ip(ip):
+    str_ip: str = ".".join(map(str, div_ip))
+    if not is_ip(str_ip):
         return None
 
-    return ip
+    return str_ip
 
 
-def mask2prefix(mask: str) -> int | None:
+def mask2prefix(dec_mask: str) -> int | None:
     """
     Counts mask bits and returns as prefix
     e.g. "255.255.255.0" -> 24
-    :param mask: string decimal mask address
+    :param dec_mask: string decimal mask address
     :return: int mask prefix |
     None if passed string is not decimal mask format
     """
-    if not is_mask(mask):
+    if not is_mask(dec_mask):
         return None
 
-    return ip2bin(mask).count("1")
+    return ip2bin(dec_mask).count("1")
 
 
 def prefix2mask(prefix: int) -> str | None:

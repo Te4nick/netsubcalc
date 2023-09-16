@@ -6,22 +6,31 @@ netsubcalc module for IS functions
 import re
 
 
-def is_ip(ip: str) -> bool:
+__all__ = [
+    "is_ip",
+    "is_mask",
+    "is_ip_private",
+    "is_bin_mask",
+    "is_bin_ip"
+]
+
+
+def is_ip(dec_ip: str) -> bool:
     """
     Checks if passed string matches decimal IP format and all IP octets are in bounds.
     e.g.
     "192.168.0.1" -> True;
     "354.19.4.2" -> False (1st octet = 354, value greater than fits in 1 byte).
-    :param ip: string IP address
+    :param dec_ip: string IP address
     :return: True/False if passed string is IP address
     """
     if not re.match(
             r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$",
-            ip
+            dec_ip
     ):
         return False
 
-    div_ip = list(map(int, ip.split(".")))
+    div_ip = list(map(int, dec_ip.split(".")))
     return not bool(sum(map(lambda x: x >> 8, div_ip)))
 
 
@@ -69,17 +78,17 @@ def is_bin_mask(bin_mask: str) -> bool:
     return bool(re.match(r"^1+0*$", bin_mask_byte_glued))
 
 
-def is_ip_private(ip: str) -> bool | None:
+def is_ip_private(dec_ip: str) -> bool | None:
     """
     Checks if passed IP is Private IP type. Returns None if is_ip check fails
-    :param ip: string IP address
+    :param dec_ip: string IP address
     :return: True/False if passed string is Private IP Type |
     None if passed string is not decimal IP format
     """
-    if not is_ip(ip):
+    if not is_ip(dec_ip):
         return None
 
-    div_ip = list(map(int, ip.split(".")))
+    div_ip = list(map(int, dec_ip.split(".")))
     f_oct, s_oct = div_ip[0], div_ip[1]  # First and Second IP octets
     if 10 == f_oct:
         return True  # Private Class A

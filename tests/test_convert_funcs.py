@@ -1,6 +1,5 @@
 """
-Main testing file
-TODO: rebase to multiple
+Testing convert functions of netsubcalc
 """
 
 

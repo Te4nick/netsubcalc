@@ -1,10 +1,32 @@
-from convert_funcs import ip2int_list, mask2prefix
-from is_funcs import is_ip, is_mask
+"""
+netsubcalc Network / Subnetwork Calculation Module
+"""
 
 
-def netaddr(ip: str, mask: str) -> str | None:
-    div_ip: list[int] = ip2int_list(ip)
-    div_mask: list[int] = ip2int_list(mask)
+from netsubcalc.convert_funcs import ip2int_list, mask2prefix
+from netsubcalc.is_funcs import is_ip, is_mask
+
+
+__all__ = [
+    "netaddr",
+    "broadcast",
+    "hosts_count",
+    "hosts_ip_range",
+    "ip_class"
+]
+
+
+def netaddr(dec_ip: str, dec_mask: str) -> str | None:
+    """
+    Calculates network address using
+    string decimal IP address and string decimal mask address
+    :param dec_ip: string decimal IP
+    :param dec_mask: string decimal mask
+    :return: string decimal network address |
+    None if IP or mask are not string decimal format
+    """
+    div_ip: list[int] = ip2int_list(dec_ip)
+    div_mask: list[int] = ip2int_list(dec_mask)
     if not (div_ip and div_mask):
         return None
 
@@ -15,9 +37,17 @@ def netaddr(ip: str, mask: str) -> str | None:
     return '.'.join(div_net)
 
 
-def broadcast(ip: str, mask: str) -> str | None:
-    div_ip: list[int] = ip2int_list(ip)
-    div_mask: list[int] = ip2int_list(mask)
+def broadcast(dec_ip: str, dec_mask: str) -> str | None:
+    """
+    Calculates broadcast address using
+    string decimal IP address and string decimal mask address
+    :param dec_ip: string decimal IP
+    :param dec_mask: string decimal mask
+    :return: string decimal network address |
+    None if IP or mask are not string decimal format
+    """
+    div_ip: list[int] = ip2int_list(dec_ip)
+    div_mask: list[int] = ip2int_list(dec_mask)
     if not (div_ip and div_mask):
         return None
 
@@ -28,16 +58,32 @@ def broadcast(ip: str, mask: str) -> str | None:
     return '.'.join(broad)
 
 
-def hosts_count(mask: str) -> int | None:
-    if not is_mask(mask):
+def hosts_count(dec_mask: str) -> int | None:
+    """
+    Calculates all network hosts addresses count
+    using string decimal mask address
+    :param dec_mask: string decimal mask
+    :return: int hosts address count |
+    None if mask is not string decimal format
+    """
+    if not is_mask(dec_mask):
         return None
 
-    return 1 << (32 - mask2prefix(mask))
+    return 1 << (32 - mask2prefix(dec_mask))
 
 
-def hosts_ip_range(ip: str, mask: str) -> (str | None, str | None):
-    net_addr = netaddr(ip, mask)
-    broad = broadcast(ip, mask)
+def hosts_ip_range(dec_ip: str, dec_mask: str) -> (str | None, str | None):
+    """
+    Calculates usable hosts IP addresses range and returns (str, str)
+    tuple of 2 string decimal IP addresses using
+    string decimal IP address and string decimal mask address
+    :param dec_ip: string decimal IP
+    :param dec_mask: string decimal mask
+    :return: (str, str) string decimal IP tuple |
+    (None, None) tuple if IP or mask are not string decimal format
+    """
+    net_addr = netaddr(dec_ip, dec_mask)
+    broad = broadcast(dec_ip, dec_mask)
     if not (net_addr and broad):
         return None, None
 
@@ -49,12 +95,19 @@ def hosts_ip_range(ip: str, mask: str) -> (str | None, str | None):
     return first, last
 
 
-def ip_class(ip: str) -> str | None:
-    if not is_ip(ip):
+def ip_class(dec_ip: str) -> str | None:
+    """
+    Calculates str IP network class
+    using string decimal IP address
+    :param dec_ip: string decimal IP
+    :return: string IP network class |
+    None if IP is not string decimal format
+    """
+    if not is_ip(dec_ip):
         return None
 
     res_class: str = ""
-    first_octet: int = ip2int_list(ip)[0]
+    first_octet: int = ip2int_list(dec_ip)[0]
     if 1 <= first_octet <= 126:
         res_class = "A"
     if 128 <= first_octet <= 191:
