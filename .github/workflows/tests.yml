@@ -16,7 +16,7 @@
               ${{ matrix.python-version }}
         - name: Install .dev dependencies
           run: |
-            pip3 install pytest coverage
+            pip3 install pytest coverage coveralls
         - name: Install editable
           run: |
             python3 -m pip install -e .
