@@ -7,7 +7,7 @@ import netsubcalc as nsc
 
 def test_ip2bin():
     """
-    Test netsublib.ip2bin function
+    Test netsubcalc.ip2bin function
     :return:
     """
 
@@ -56,7 +56,7 @@ test_ip2bin()
 
 def test_bin2ip():
     """
-    Test netsublib.bin2ip function
+    Test netsubcalc.bin2ip function
     :return:
     """
 
@@ -106,7 +106,7 @@ test_bin2ip()
 
 def test_ip2int_list():
     """
-    Test netsublib.ip2int_list function
+    Test netsubcalc.ip2int_list function
     :return:
     """
 
@@ -155,7 +155,7 @@ test_ip2int_list()
 
 def test_int_list2ip():
     """
-    Test netsublib.int_list2ip function
+    Test netsubcalc.int_list2ip function
     :return:
     """
 
@@ -192,6 +192,7 @@ def test_int_list2ip():
         {'data': [192, 168, 92, 29], 'expected': '192.168.92.29'},
         {'data': [192, 168, 92, 30], 'expected': '192.168.92.30'},
         {'data': [192, 168, 92, 31], 'expected': '192.168.92.31'},
+        {'data': ['abc', 'def', 'gh', 'jk'], 'expected': None},
         {'data': 'abc.def.gh.jk', 'expected': None}
     ]
 

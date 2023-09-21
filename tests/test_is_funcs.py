@@ -12,9 +12,18 @@ from netsubcalc import (
 )
 
 
+__all__ = [
+    "test_is_ip",
+    "test_is_bin_ip",
+    "test_is_mask",
+    "test_is_bin_mask",
+    "test_is_ip_private",
+]
+
+
 def test_is_ip() -> None:
     """
-        Test netsublib.is_ip function
+        Test netsubcalc.is_ip function
         :return:
         """
     test_table = [
@@ -49,7 +58,7 @@ def test_is_ip() -> None:
 
 def test_is_bin_ip() -> None:
     """
-        Test netsublib.is_bin_ip function
+        Test netsubcalc.is_bin_ip function
         :return:
         """
     test_table = [
@@ -128,7 +137,7 @@ def test_is_bin_ip() -> None:
 
 def test_is_mask() -> None:
     """
-        Test netsublib.is_mask function
+        Test netsubcalc.is_mask function
         :return:
         """
     test_table = [
@@ -175,7 +184,7 @@ def test_is_mask() -> None:
 
 def test_is_bin_mask() -> None:
     """
-        Test netsublib.is_bin_mask function
+        Test netsubcalc.is_bin_mask function
         :return:
         """
     test_table = [
@@ -252,7 +261,7 @@ def test_is_bin_mask() -> None:
 
 def test_is_ip_private() -> None:
     """
-        Test netsublib.is_ip_private function
+        Test netsubcalc.is_ip_private function
         :return:
         """
     test_table = [
