@@ -25,6 +25,10 @@ from tests.test_calc_funcs import (
     test_hosts_ip_range,
     test_ip_class
 )
+from tests.test_print_funcs import (
+    test_print_subnet_info,
+    test_print_all_possible_subnets,
+)
 
 
 def main() -> None:
@@ -51,6 +55,9 @@ def main() -> None:
     test_hosts_count()
     test_hosts_ip_range()
     test_ip_class()
+    # test_print_funcs
+    test_print_subnet_info()
+    test_print_all_possible_subnets()
 
 
 if __name__ == '__main__':
