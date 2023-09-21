@@ -37,7 +37,7 @@ def print_help():
 
 
 if __name__ == '__main__':
-    print('--=0 NETCONVERT 0=--')
+    print('--=0 NETSUBCALC 0=--')
     command: str = "help"
 
     while command != "exit":

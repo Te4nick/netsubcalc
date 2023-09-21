@@ -7,15 +7,19 @@ from netsubcalc.calc_funcs import (
     broadcast,
     hosts_ip_range,
     hosts_count,
-    ip_class
+    ip_class,
 )
 from netsubcalc.convert_funcs import (
     ip2bin,
     mask2prefix,
     ip2int_list,
-    int_list2ip
+    int_list2ip,
 )
-from netsubcalc.is_funcs import is_ip_private
+from netsubcalc.is_funcs import (
+    is_ip,
+    is_mask,
+    is_ip_private,
+)
 
 
 def print_subnet_info(dec_ip: str, mask: str) -> None:
@@ -25,6 +29,12 @@ def print_subnet_info(dec_ip: str, mask: str) -> None:
     :param mask: string decimal Mask
     :return: None
     """
+    if not is_ip(dec_ip):
+        print("Invalid ID Address format")
+        return
+    if not is_mask(mask):
+        print("Invalid Mask format")
+        return
     print(f"{'IP Address:':<24}{dec_ip:>36}")
     print(f"{'Network Address:':<24}{netaddr(dec_ip, mask):>36}")
     print(f"{'Usable Host IP Range:':<24}{' - '.join(hosts_ip_range(dec_ip, mask)):>36}")
@@ -49,10 +59,19 @@ def print_all_possible_subnets(dec_ip: str, mask: str) -> None:
     :param mask: string decimal mask address
     :return: None
     """
-    if mask2prefix(mask) % 8 == 0:  # Check for default mask: thus no subnets exist
+    if not is_ip(dec_ip):
+        print("Invalid ID Address format")
+        return
+    if not is_mask(mask):
+        print("Invalid Mask format")
         return
 
-    sub_count = 1 << (8 - (mask2prefix(mask) % 8))
+    mask_prefix = mask2prefix(mask)
+    if mask_prefix % 8 == 0:  # Check for default mask: thus no subnets exist
+        print("Whole network Mask, no subnets exists")
+        return
+
+    sub_count = 1 << (mask_prefix - (8 * (mask_prefix // 8)))
     net_octet = mask2prefix(mask) // 8
 
     common_ip = [str(octet) if i < net_octet else '*'

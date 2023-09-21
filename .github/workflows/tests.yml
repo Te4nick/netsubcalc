@@ -1,0 +1,42 @@
+  on:
+    [push, pull_request]
+  jobs:
+    test:
+      strategy:
+        matrix:
+          python-version: ["3.11"]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version:
+              ${{ matrix.python-version }}
+        - name: Install .dev dependencies
+          run: |
+            pip3 install pytest coverage coveralls
+        - name: Install editable
+          run: |
+            python3 -m pip install -e .
+        - name: Run tests
+          run: |
+            coverage run --source=netsubcalc -m pytest tests/
+        - name: Upload coverage data to coveralls.io
+          run: coveralls --service=github
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            COVERALLS_PARALLEL: true
+    coveralls:
+      name: Indicate completion to coveralls.io
+      needs: test
+      runs-on: ubuntu-latest
+      container: python:3-slim
+      steps:
+        - name: Finished
+          run: |
+            pip3 install --upgrade coveralls
+            coveralls --service=github --finish
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
