@@ -5,7 +5,6 @@ authors = [
   { name="Te4nick", email="te4nick@outlook.com" },
 ]
 description = "Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation."
-license="LICENCE"
 readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
