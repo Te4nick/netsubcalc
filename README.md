@@ -1,4 +1,5 @@
 # Network/Subnetwork Calculation [netsubcalc]
+[![Coverage Status](https://coveralls.io/repos/github/Te4nick/netsubcalc/badge.svg?branch=test)](https://coveralls.io/github/Te4nick/netsubcalc?branch=test)
 ![pylint](https://img.shields.io/badge/pylint-10.00-brightgreen?logo=python&logoColor=white)
 
 Small and Slow Proof-of-Concept Python Module for Networks and Subnetworks Values Calculation.
