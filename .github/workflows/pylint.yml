@@ -9,6 +9,8 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
+    - name: Bypass requirements.txt
+      run: touch requirements.txt
     - uses: Silleellie/pylint-github-action@v1
       with:
         package-path: |
