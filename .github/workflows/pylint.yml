@@ -10,7 +10,8 @@ jobs:
         python-version: ["3.11"]
     steps:
     - name: Bypass requirements.txt
-      run: touch netsubcalc/requirements.txt
+      working-directory: ./netsubcalc
+      run: touch requirements.txt
     - uses: Silleellie/pylint-github-action@v1
       with:
         package-path: |
