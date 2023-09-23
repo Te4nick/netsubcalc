@@ -10,3 +10,6 @@ tests/.pytest_cache
 # Python env
 __pycache__
 venv
+
+# Build
+dist

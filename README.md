@@ -1,4 +1,6 @@
 # Network/Subnetwork Calculation [netsubcalc]
+![tests](https://github.com/Te4nick/netsubcalc/actions/workflows/tests.yml/badge.svg)
+[![codecov](https://codecov.io/gh/Te4nick/netsubcalc/graph/badge.svg?token=VP67HS8G2S)](https://codecov.io/gh/Te4nick/netsubcalc)
 [![Coverage Status](https://coveralls.io/repos/github/Te4nick/netsubcalc/badge.svg?branch=test)](https://coveralls.io/github/Te4nick/netsubcalc?branch=test)
 ![pylint](https://img.shields.io/badge/pylint-10.00-brightgreen?logo=python&logoColor=white)
 
